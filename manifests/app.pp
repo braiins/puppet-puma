@@ -4,6 +4,12 @@ define puma::app(
   $app_root    = "/srv/${name}",
   $rvm_ruby    = '',
   $use_bundler = false,
+  $db_adapter,
+  $db_user,
+  $db_password,
+  $db_host,
+  $db_port,
+  $db_name,
 ) {
 
   if $rvm_ruby != '' {
@@ -40,6 +46,14 @@ define puma::app(
     owner  => $app_user,
     group  => $app_user,
     mode   => '0775',
+  }
+
+  ->
+
+  file { "${app_root}/shared/config/database.yml":
+    content => template('puma/database.yml.erb'),
+    owner   => $app_user,
+    group   => $app_user,
   }
 
   ->

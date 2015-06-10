@@ -13,4 +13,10 @@
 # See LICENSE file, Arthur Leonard Andersen (c) 2013
 
 class puma {
+  if !defined(Package['puma']) {
+    package { 'puma':
+      ensure => latest,
+      provider => 'gem',
+    }
+  }
 }

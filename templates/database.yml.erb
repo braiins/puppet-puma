@@ -9,11 +9,11 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: <%= @db_name_real %>
+  database: <%= @db_name %>
   pool: 5
-  username: <%= @db_user_real %>
+  username: <%= @db_user %>
   password: <%= @db_password %>
-<% if @db_socket != "UNSET" -%>
+<% if @db_socket = "UNSET" -%>
   socket: <%= @db_socket %>
 <% else -%>
   host: '<%= @db_host %>'
@@ -22,15 +22,10 @@ production:
 <% when 'pgsql' -%>
 production:
   adapter: postgresql
-  encoding: unicode
-  database: '<%= @db_name_real %>'
-  pool: 5
-  username: '<%= @db_user_real %>'
-  password: '<%= @db_password %>'
-<% if @db_socket != "UNSET" -%>
-  socket: <%= @db_socket %>
-<% else -%>
-  host: '<%= @db_host %>'
-  port: '<%= @db_port %>'
-<% end -%>
+  encoding: utf8
+  database: <%= @db_name %>
+  username: <%= @db_user %>
+  password: <%= @db_password %>
+  host: <%= @db_host %>
+  port: <%= @db_port %>
 <% end -%>
